@@ -73,7 +73,7 @@ Isso iniciará:
 
 Para encerrar a infraestrutura:
 ```bash
-docker-compose -f docker-compose.dev.yml down
+docker-compose -f docker-compose-infra.yml down
 ```
 
 ### 2. Compilar o Projeto
