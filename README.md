@@ -141,6 +141,10 @@ Abaixo estão exemplos de comandos `curl` para interagir com a API-1 (ajuste a p
 ```bash
 curl -X POST http://localhost:8080/auth/token
 ```
+**Resposta Exemplo:**
+```text
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InByaXZhdGVLZXkucGVtIn0... (token string)
+```
 
 ### 2. Acionar Carga Inicial (Protegido)
 ```bash
@@ -148,11 +152,37 @@ curl -X POST http://localhost:8080/auth/token
 curl -X POST http://localhost:8080/fipe/load \
      -H "Authorization: Bearer <TOKEN>"
 ```
+**Resposta Exemplo (202 Accepted):**
+*(Sem corpo de resposta)*
 
 ### 3. Listar Marcas (Protegido)
 ```bash
 curl -X GET http://localhost:8080/fipe/brands \
      -H "Authorization: Bearer <TOKEN>"
+```
+**Resposta Exemplo (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "codigo": "21",
+    "nome": "FIAT"
+  },
+  {
+    "id": 2,
+    "codigo": "59",
+    "nome": "VW - VolksWagen"
+  }
+]
+```
+
+**Resposta Exemplo (404 Not Found):**
+```json
+{
+  "message": "Nenhuma marca encontrada",
+  "code": "NOT_FOUND",
+  "timestamp": "2026-03-23T00:20:00.000000"
+}
 ```
 
 ### 4. Buscar Veículos por Marca (Protegido)
@@ -160,6 +190,32 @@ curl -X GET http://localhost:8080/fipe/brands \
 ```bash
 curl -X GET http://localhost:8080/fipe/vehicles/21 \
      -H "Authorization: Bearer <TOKEN>"
+```
+**Resposta Exemplo (200 OK):**
+```json
+[
+  {
+    "id": 10,
+    "codigo": "620",
+    "modelo": "Uno Mille 1.0 Fire/ F.Flex (S.Ed.)",
+    "observacoes": null
+  },
+  {
+    "id": 11,
+    "codigo": "2450",
+    "modelo": "Palio 1.0 ECONOMY Fire Flex 8V 4p",
+    "observacoes": "Pneus novos"
+  }
+]
+```
+
+**Resposta Exemplo (404 Not Found):**
+```json
+{
+  "message": "Marca não encontrada",
+  "code": "NOT_FOUND",
+  "timestamp": "2026-03-23T00:20:00.000000"
+}
 ```
 
 ### 5. Atualizar Veículo (Protegido)
@@ -172,6 +228,17 @@ curl -X PUT http://localhost:8080/fipe/vehicles/21/620 \
            "modelo": "Uno Mille 1.0",
            "observacoes": "Veículo revisado com troca de óleo e filtros"
          }'
+```
+**Resposta Exemplo (200 OK):**
+*(Sem corpo de resposta)*
+
+**Resposta Exemplo (404 Not Found):**
+```json
+{
+  "message": "Veículo não encontrado para a marca informada",
+  "code": "NOT_FOUND",
+  "timestamp": "2026-03-23T00:20:00.000000"
+}
 ```
 
 ---
