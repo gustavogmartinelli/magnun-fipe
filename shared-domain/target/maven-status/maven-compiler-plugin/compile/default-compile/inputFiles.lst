@@ -1,0 +1,12 @@
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\dto\BrandDTO.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\dto\ModelResponseDTO.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\dto\VehicleDTO.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\entity\Brand.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\entity\Vehicle.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\repository\BrandRepository.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\repository\VehicleRepository.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\domain\service\FipeClient.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\infrastructure\client\FipeClientImpl.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\infrastructure\client\FipeRestClient.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\infrastructure\persistence\panache\PanacheBrandRepository.java
+C:\Users\gusta\IdeaProjects\magnumBank\magnum-fipe-monorepo\shared-domain\src\main\java\br\com\magnumbank\shared\infrastructure\persistence\panache\PanacheVehicleRepository.java

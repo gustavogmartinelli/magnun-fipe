@@ -1,0 +1,16 @@
+erDiagram
+    MARCA {
+        UUID id PK "Identificador interno"
+        String codigo_fipe UK "Código original da marca na FIPE"
+        String nome "Nome da marca (ex: VW - VolksWagen)"
+    }
+
+    VEICULO {
+        UUID id PK "Identificador interno"
+        String codigo_fipe UK "Código original do modelo na FIPE"
+        String modelo "Nome do modelo (ex: AMAROK High.CD 2.0 16V TDI 4x4 Dies. Aut)"
+        String observacoes "Campo livre para anotações do usuário"
+        UUID marca_id FK "Relacionamento com a tabela MARCA"
+    }
+
+    MARCA ||--o{ VEICULO : "possui"

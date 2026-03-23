@@ -1,0 +1,41 @@
+sequenceDiagram
+    autonumber
+    actor Cliente
+    participant API1 as API-1 (REST/Producer)
+    participant FIPE as API Externa (FIPE)
+    participant Fila as RabbitMQ (Fila)
+    participant API2 as API-2 (Worker/Consumer)
+    participant DB as PostgreSQL
+    participant Cache as Redis
+
+    rect rgb(230, 240, 255)
+    Note over Cliente,DB: FLUXO 1: Carga Inicial (Assíncrono)
+    Cliente->>API1: POST /api/carga-inicial (Autenticado)
+    API1->>FIPE: GET /marcas
+    FIPE-->>API1: Retorna JSON com Marcas
+    API1->>Fila: Publica evento com as Marcas
+    API1-->>Cliente: 202 Accepted (Carga iniciada)
+    Fila->>API2: Consome evento de Marca
+    API2->>FIPE: GET /marcas/{id}/modelos
+    FIPE-->>API2: Retorna JSON com Modelos
+    API2->>DB: Salva Marca e Veículos (Código, Marca, Modelo)
+    end
+
+    rect rgb(240, 255, 230)
+    Note over Cliente,Cache: FLUXO 2: Consultas e Alterações (Síncrono)
+    Cliente->>API1: GET /api/veiculos/marca/{id} (Autenticado)
+    API1->>Cache: Verifica existência no Redis
+    alt Cache Hit (Encontrado)
+        Cache-->>API1: Retorna dados cacheados
+    else Cache Miss (Não encontrado)
+        API1->>DB: Busca Códigos, Modelos e Observações
+        DB-->>API1: Retorna dados do SQL
+        API1->>Cache: Salva resultado no Redis
+    end
+    API1-->>Cliente: 200 OK
+    
+    Cliente->>API1: PUT /api/veiculos/{id} (Altera Modelo/Obs)
+    API1->>DB: Atualiza dados
+    API1->>Cache: Invalida/Atualiza cache correspondente
+    API1-->>Cliente: 200 OK
+    end

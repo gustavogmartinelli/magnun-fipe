@@ -1,0 +1,12 @@
+br\com\magnumbank\shared\infrastructure\client\FipeRestClient.class
+br\com\magnumbank\shared\domain\dto\VehicleDTO.class
+br\com\magnumbank\shared\domain\service\FipeClient.class
+br\com\magnumbank\shared\infrastructure\persistence\panache\PanacheBrandRepository.class
+br\com\magnumbank\shared\domain\entity\Vehicle.class
+br\com\magnumbank\shared\domain\entity\Brand.class
+br\com\magnumbank\shared\infrastructure\client\FipeClientImpl.class
+br\com\magnumbank\shared\domain\repository\BrandRepository.class
+br\com\magnumbank\shared\domain\repository\VehicleRepository.class
+br\com\magnumbank\shared\domain\dto\BrandDTO.class
+br\com\magnumbank\shared\domain\dto\ModelResponseDTO.class
+br\com\magnumbank\shared\infrastructure\persistence\panache\PanacheVehicleRepository.class
