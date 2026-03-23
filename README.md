@@ -176,10 +176,26 @@ curl -X PUT http://localhost:8080/fipe/vehicles/21/620 \
 
 ---
 
-## Estrutura de Pastas (Clean Architecture)
+## Estrutura do Projeto (Clean Architecture)
 
-Ambos os módulos seguem a estrutura:
-- `domain`: Entidades ricas, regras de negócio e interfaces de repositórios/serviços.
-- `application`: DTOs e casos de uso.
-- `infrastructure`: Implementações técnicas (Persistência, Clientes HTTP, Mensageria).
-- `presentation`: Entrypoints da aplicação (Recursos REST, Consumers de Fila).
+O monorepo é dividido em três módulos principais, seguindo a separação de responsabilidades:
+
+### 1. shared-domain (Núcleo Compartilhado)
+Contém as definições centrais que são reutilizadas por ambas as APIs:
+- `domain.entity`: Entidades JPA ricas (`Brand`, `Vehicle`).
+- `domain.repository`: Interfaces de contrato para acesso a dados.
+- `domain.service`: Interfaces para integrações externas (FIPE).
+- `domain.dto`: Objetos de transferência de dados compartilhados.
+- `infrastructure.persistence.panache`: Implementações dos repositórios usando Quarkus Panache.
+- `infrastructure.client`: Implementação do cliente HTTP FIPE e interface `FipeRestClient`.
+
+### 2. api-1 (REST API & Producer)
+- `application.service`: Serviços que orquestram a carga inicial e busca de dados.
+- `infrastructure.config`: Configurações de segurança (JWT) e documentação (Swagger).
+- `presentation.rest`: Controladores REST e DTOs de entrada/saída específicos da API.
+- `presentation.rest.handler`: Tratamento global de exceções.
+
+### 3. api-2 (Worker & Consumer)
+- `application.usecase`: Regras de negócio para processamento assíncrono de marcas e modelos.
+- `application.mapper`: Conversores entre DTOs e Entidades.
+- `presentation.worker`: Consumidor de mensagens RabbitMQ (`BrandConsumer`).
