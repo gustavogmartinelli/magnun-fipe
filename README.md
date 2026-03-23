@@ -63,7 +63,7 @@ Os endpoints protegidos em `api-1` (`/fipe/*`) exigem o papel `user`, incluído 
 Na raiz do projeto, execute o comando para iniciar apenas os serviços de suporte (Banco de dados, Broker de mensagens e Redis):
 
 ```bash
-docker-compose -f docker-compose.dev.yml up -d
+docker-compose -f docker-compose-infra.yml up -d
 ```
 
 Isso iniciará:
